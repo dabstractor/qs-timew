@@ -1,0 +1,3 @@
+module qs_timew
+QmlServiceSingleton 2.0 TimewarriorService.qml
+QmlWidget 2.0 TimewarriorWidget.qml

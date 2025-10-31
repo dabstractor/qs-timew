@@ -1,0 +1,116 @@
+{
+  "testSuite": "qs-timew Test Suite",
+  "version": "2.0",
+  "module": "qs-timew",
+  "description": "Test suite for standalone timewarrior module",
+  "categories": {
+    "module": {
+      "name": "Module Import Tests",
+      "description": "Test module import and component availability",
+      "critical": true,
+      "timeout": 5000
+    },
+    "unit": {
+      "name": "Unit Tests",
+      "description": "Test TimewarriorService functionality",
+      "critical": true,
+      "timeout": 10000
+    },
+    "integration": {
+      "name": "Integration Tests",
+      "description": "Test complete tag edit workflows",
+      "critical": true,
+      "timeout": 15000
+    },
+    "performance": {
+      "name": "Performance Tests",
+      "description": "Test performance characteristics",
+      "critical": false,
+      "timeout": 30000
+    },
+    "validation": {
+      "name": "Data Integrity Tests",
+      "description": "Test data integrity and corruption detection",
+      "critical": true,
+      "timeout": 10000
+    }
+  },
+  "successCriteria": {
+    "moduleTests": "100% pass rate - Module must import correctly",
+    "unitTests": "100% pass rate - All core functionality must work",
+    "integrationTests": "100% pass rate - Complete workflows must work",
+    "performanceTests": "All benchmarks met - Performance requirements satisfied",
+    "dataIntegrity": "Zero data corruption - Data safety verified"
+  },
+  "performanceBenchmarks": {
+    "tagParsing": {
+      "small": { "maxMs": 10, "input": "project1 urgent clientA" },
+      "medium": { "maxMs": 20, "input": "project1 urgent clientA testing debugging review" },
+      "large": { "maxMs": 50, "input": "100 tags" }
+    },
+    "tagValidation": {
+      "few": { "maxMs": 5, "tagCount": 2 },
+      "many": { "maxMs": 20, "tagCount": 50 },
+      "complex": { "maxMs": 10, "tagCount": 3 }
+    },
+    "timerUpdate": {
+      "simple": { "maxMs": 100, "tagCount": 2 },
+      "complex": { "maxMs": 200, "tagCount": 4 }
+    },
+    "uiUpdate": {
+      "few": { "maxMs": 50, "tagCount": 2 },
+      "many": { "maxMs": 100, "tagCount": 20 }
+    },
+    "endToEnd": {
+      "maxMs": 500,
+      "maxMsPerOperation": 1000
+    }
+  },
+  "memoryLimits": {
+    "operationMemory": "1MB",
+    "totalMemory": "4MB",
+    "potentialLeak": "0.1MB"
+  },
+  "testScenarios": [
+    {
+      "name": "Simple Work Timer",
+      "initialTags": ["work", "project"],
+      "newTags": ["work", "project", "urgent"],
+      "elapsedSeconds": 1800,
+      "category": "integration"
+    },
+    {
+      "name": "Meeting Timer",
+      "initialTags": ["meeting", "client"],
+      "newTags": ["meeting", "client", "follow-up"],
+      "elapsedSeconds": 3600,
+      "category": "integration"
+    },
+    {
+      "name": "Development Timer",
+      "initialTags": ["development", "feature-123"],
+      "newTags": ["development", "feature-123", "debugging"],
+      "elapsedSeconds": 7200,
+      "category": "integration"
+    }
+  ],
+  "corruptionTests": [
+    "TIMER_STOP",
+    "TIME_LOSS",
+    "TAG_CORRUPTION",
+    "MEMORY_CORRUPTION",
+    "PARTIAL_UPDATE"
+  ],
+  "edgeCases": [
+    "No active timer",
+    "Extremely long tags",
+    "Special characters",
+    "Rapid successive edits"
+  ],
+  "reporting": {
+    "includeDetailedLogs": true,
+    "includePerformanceMetrics": true,
+    "includeMemoryUsage": true,
+    "maxLogEntries": 1000
+  }
+}

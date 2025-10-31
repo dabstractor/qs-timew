@@ -1,0 +1,20 @@
+{
+  "name": "qs-timew",
+  "version": "1.0.0",
+  "description": "A standalone timewarrior integration module for QML applications",
+  "main": "qmldir",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dustin-s/qs-timew.git"
+  },
+  "keywords": ["qml", "qt", "timewarrior", "time-tracking", "quickshell"],
+  "author": "dustin-s",
+  "license": "MIT",
+  "dependencies": {
+    "qt": "^6.0",
+    "timewarrior": "^1.4"
+  },
+  "engines": {
+    "qml": "^6.0"
+  }
+}
